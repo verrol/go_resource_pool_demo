@@ -1,2 +1,8 @@
-# go_thread_pool_demo
-Simple example of GO thread pool implementation
+# Go Resource Pool
+This is a simple example of how to implement a resoruce pool in Go.
+
+Since Go is a gargabe collected language, you can stress the GC if you allocating a large number of objects, which are short lived.
+
+Imagine you application allocated a ClientConnection object for each client connnection, spun up a goroutine to handle to ClientConnection, but then fres the object. If thre are thousands of connections per minute for example, each object may only be around for a few milliseconds to seconds, before they are no longer needed.
+
+In this scenario, the GC will be called to create thoustands of objects per seconds, and then later have to free thousands of objects frequently.
